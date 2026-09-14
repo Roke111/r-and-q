@@ -1,0 +1,12 @@
+# macOS
+.DS_Store
+
+# 编辑器与本地工具目录
+.vscode/
+.idea/
+.workbuddy/
+.codebuddy/
+
+# 日志与临时文件
+*.log
+*.tmp

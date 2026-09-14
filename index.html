@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>R&amp;Q</title>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-font-smoothing:antialiased}
+body{
+  font-family:system-ui,-apple-system,'PingFang SC','Microsoft YaHei',sans-serif;
+  background:#f4feff;color:#3d5d7a;line-height:1.65;
+  min-height:100vh;display:grid;place-items:center;padding:24px;
+}
+.card{
+  width:100%;max-width:520px;background:#fff;
+  border:1px solid rgba(61,93,122,0.15);border-radius:14px;
+  padding:48px 40px;
+  transition:transform .3s ease,border-color .3s ease;
+}
+.card:hover{transform:scale(1.01);border-color:rgba(76,165,215,0.35)}
+@media(hover:none){.card:hover{transform:none}}
+@media(max-width:520px){.card{padding:36px 24px}}
+.status{
+  display:inline-flex;align-items:center;gap:8px;margin-bottom:20px;
+  font-size:12px;font-weight:500;letter-spacing:1.5px;text-transform:uppercase;
+  color:#4ca5d7;
+}
+.dot{width:7px;height:7px;border-radius:50%;background:#1D9E75}
+h1{
+  font-size:clamp(30px,7vw,42px);font-weight:600;
+  color:#261e5c;letter-spacing:-1.2px;line-height:1.15;margin-bottom:12px;
+}
+.sub{font-size:15px;margin-bottom:32px}
+dl{border-top:1px solid rgba(61,93,122,0.12);padding-top:20px;display:grid;gap:12px}
+.row{display:flex;justify-content:space-between;align-items:baseline;gap:16px;font-size:13px}
+dt{color:#888780;flex-shrink:0}
+dd{color:#261e5c;font-weight:500;text-align:right;word-break:break-all}
+code{
+  font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
+  background:#f4feff;border:1px solid rgba(61,93,122,0.12);
+  padding:2px 6px;border-radius:4px;
+}
+</style>
+</head>
+<body>
+<main class="card">
+  <p class="status"><span class="dot"></span>Live on GitHub Pages</p>
+  <h1>R&amp;Q</h1>
+  <p class="sub">项目站点部署成功，内容建设中。</p>
+  <dl>
+    <div class="row"><dt>站点类型</dt><dd>项目站点</dd></div>
+    <div class="row"><dt>仓库</dt><dd><code>r-and-q</code></dd></div>
+    <div class="row"><dt>分支</dt><dd><code>main</code></dd></div>
+    <div class="row"><dt>部署时间</dt><dd>2026-09-14 13:08</dd></div>
+    <div class="row"><dt>访问地址</dt><dd>roke111.github.io/r-and-q/</dd></div>
+  </dl>
+</main>
+</body>
+</html>
