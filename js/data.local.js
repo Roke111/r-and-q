@@ -96,8 +96,8 @@ window.SITE_DATA_LOCAL = {
   wallFoot: null,   // ← 你没填这行小字，留空（写 null 才不漏出示例的说明文字）
 
   /* ---------- 06 共同爱好词云 ----------
-     已填 5 个，留了 3 个空位。
-     weight 1~5，越大字越大、越不透明；不填按 5 处理。 */
+     共 18 个词。weight 1~5，越大字越大、越不透明；不填按 5 处理。
+     字号由脚本按数组里的最大/最小 weight 自动换算。 */
   words: [
     { text: "宝", weight: 5 },
     { text: "猪", weight: 5 },
@@ -105,10 +105,20 @@ window.SITE_DATA_LOCAL = {
     { text: "4：50 最早起床时间", weight: 1 },
     { text: "为对方过2次生日", weight: 2 },
 
-    // ↓↓↓ 待补充 ↓↓↓
-    { text: "" },
-    { text: "" },
-    { text: "" }
+    // ↓↓↓ 2026-09-17 补充 ↓↓↓
+    { text: "猪猪", weight: 5 },
+    { text: "多乐", weight: 4 },
+    { text: "爱你", weight: 3 },
+    { text: "梅林", weight: 3 },
+    { text: "扁你", weight: 3 },
+    { text: "接我", weight: 2 },
+    { text: "你好", weight: 1 },
+    { text: "3.15", weight: 2 },
+    { text: "9.24", weight: 1 },
+    { text: "6.10", weight: 3 },
+    { text: "1.4", weight: 2 },
+    { text: "11.17", weight: 3 },
+    { text: "8.2", weight: 3 }
   ],
 
   /* ---------- 07 心情曲线 ---------- */
