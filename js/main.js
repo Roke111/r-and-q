@@ -496,6 +496,31 @@
     return max > 0 ? (deck.scrollTop / max) * 100 : 0;
   }
 
+  /* 哪一张是「当前页」——按卡片是否覆盖视口垂直中线判定。
+     ------------------------------------------------------------
+     这里曾经用 intersectionRatio >= 0.55 判定，对高度等于一屏的卡片没问题，
+     但 02 时间轴有 13 条内容、整卡约 1389px，比手机视口高得多：
+       最大可见比例 = 视口高 / 卡片高
+     视口高 764px 时刚好 0.550，再矮（750 / 727 / 664 …）就永远达不到阈值，
+     于是这张卡片永远拿不到 .is-active，里面 13 条 .reveal 全部停在
+     opacity:0 —— 整屏只剩标题，内容看着像没渲染出来。
+     中线判定不依赖比例，超高卡片同样成立。 */
+  function cardAtCenter() {
+    if (!deck) return null;
+    var mid = deck.scrollTop + deck.clientHeight / 2;
+    for (var i = 0; i < cards.length; i++) {
+      var c = cards[i];
+      if (mid >= c.offsetTop && mid < c.offsetTop + c.offsetHeight) return c;
+    }
+    return null;
+  }
+
+  function syncActive() {
+    var c = cardAtCenter();
+    if (c) activate(c);
+    if (progress) progress.style.width = progressWidth() + '%';
+  }
+
   function observeCards() {
     if (!deck || !cards.length) return;
 
@@ -505,13 +530,25 @@
       return;
     }
 
+    // rootMargin 把判定区收成视口正中间 10% 高的一条带：
+    // 只有当卡片盖住这条带（也就是盖住页面正中）才算当前页。
     var io = new IntersectionObserver(function (entries) {
       entries.forEach(function (en) {
-        if (en.isIntersecting && en.intersectionRatio >= 0.55) activate(en.target);
+        if (en.isIntersecting) activate(en.target);
       });
-    }, { root: deck, threshold: [0, 0.25, 0.55, 0.75, 1] });
+    }, { root: deck, rootMargin: '-45% 0px -45% 0px', threshold: 0 });
 
     cards.forEach(function (c) { io.observe(c); });
+
+    // 兜底：滚动时每帧按中线校准一次，避免观测器在极端尺寸下漏判
+    var ticking = false;
+    deck.addEventListener('scroll', function () {
+      if (ticking) return;
+      ticking = true;
+      requestAnimationFrame(function () { ticking = false; syncActive(); });
+    }, { passive: true });
+
+    syncActive();
   }
 
   /* ==================== 5. 背景音乐 ==================== */
